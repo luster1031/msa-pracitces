@@ -2,7 +2,7 @@ spring:
    application:
       name: service-registry-server
    profiles:
-      active: production
+      active: development
     
 server:
    port: 8761
@@ -49,8 +49,8 @@ eureka:
    instance:
       hostname: 192.168.0.69
    server:
-      enableSelfPreservation: false
-      waitTimeInMsWhenSyncEmpty: 5        
+      enableSelfPreservation: false   # 네트워크 장애났을 때, 서비스 없애는 거 방지
+      waitTimeInMsWhenSyncEmpty: 5    # 0.0005초로 바꿈    
    client:
       fetchRegistry: false
       registerWithEureka: false
@@ -63,12 +63,14 @@ logging:
    logback:
       rollingpolicy:
          file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
-         max-history: 30
+         max-file-size: 10MB  # 10MB넘어가면 zip으로 만듦
+         max-history: 30      # 계속할 수가 없어서, 30개까지 생김
+         
    file:
       name: logs/${spring.application.name}.log
 
    level:
-      root: INFO
+      root: WARN
       me:
          kickscar:
             emaillist:
