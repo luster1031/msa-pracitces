@@ -3,90 +3,18 @@ spring:
       name: service-emaillist # msa 등록할 이름 / log파일 이름
    profiles:
       active: development
-  
-server:
-   port: 0
-   servlet:
-      context-path: /
-      encoding:
-         charset: UTF-8
-         enabled: true
-        
-        
----
+   
+---  
 spring:
    config:
       activate:
          on-profile: development
-   devtools:
-      livereload:
-         enabled: true
-   datasource:
-      driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mysql://192.168.0.69:3307/webdb?characterEncoding=utf8
-      username: webdb
-      password: webdb   
-
-mybatis:
-   config-location: classpath:mybatis/configuration.xml
- 
-
-eureka:
-   instance:
-      preferIpAddress: true # 서비스들 location설정을 ip로 해라
-   client:
-      fetchRegistry: true   
-      registerWithEureka: true  # 서비스 레지스트리에 등록해야함
-      serviceUrl:
-         defaultZone: http://localhost:8761/eureka 
-         
-logging:
-   pattern:
-      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
-   level:
-      root: INFO
+      import: optional:configserver:http://localhost:7777
       
----
+---  
 spring:
    config:
       activate:
-         on-profile: production
-
-   datasource:
-      driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mysql://192.168.0.69:3307/webdb?characterEncoding=utf8
-      username: webdb
-      password: webdb   
-
-mybatis:
-   config-location: classpath:mybatis/configuration.xml
- 
-eureka:
-   instance:
-      preferIpAddress: true
-   client:
-      fetchRegistry: true
-      registerWithEureka: true
-      serviceUrl:
-         defaultZone: http://192.168.0.69:8761/eureka
-         
-logging:
-   pattern:
-      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
-   logback:
-      rollingpolicy:
-         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
-         max-file-size: 10MB  # 10MB넘어가면 zip으로 만듦
-         max-history: 30      # 계속할 수가 없어서, 30개까지 생김
-         
-   file:
-      name: logs/${spring.application.name}.log
-
-   level:
-      root: WARN        
-      me:
-         kickscar:
-            msa:
-               service:
-                  emaillist:
-                     exception: ERROR
+         on-profile: production   
+      import: optional:configserver:http://192.168.0.69:7777
+      

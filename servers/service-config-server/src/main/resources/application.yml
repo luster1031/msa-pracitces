@@ -1,32 +1,63 @@
+spring:
+   application:
+      name: service-config-server
+   profiles:
+      active: git   #native / git이라고 주면, 
 server:
    port: 7777
-
-encrypt:
+encrypt:  # 암호화 복호화
   key-store:
     alias: selfsigned
     location: classpath:keystore.jks
     password: password
-
-#
-# git based
+    
+    
+---
+#                 
+# configuration based on git
 #
 spring:
+   config:
+      activate:
+         on-profile: git   
    cloud:
       config:
          server:
-            encrypt.enabled: true
+            encrypt.enabled: true # 암호화를 쓴다는 걸 알려줌
             git:
-               uri: https://github.com/kickscar/msa-practices-config-repo
-               searchPaths: service-emaillist
+               uri: https://github.com/luster1031/msa-practices-config-repo
+               searchPaths: service-emaillist, service-gallery, service-guestbook, service-storage
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB
+         max-history: 10
+   file:
+      name: logs/${spring.application.name}.log
+   level:
+      root: WARN
+               
 
+---
 #
-# file-system based(native)
+# configuration based on file-system(native)
 #
-#spring:
-#  profiles:
-#    active: native
-#  cloud:
-#     config:
-#       server:
-#           native:
-#              searchLocations: file:///Users/kickscar/DoWork/STS-Workspace/msa-practices-config-repo/service-emaillist
+spring:
+   config:
+      activate:
+         on-profile: native   
+   cloud:
+     config:
+       server:
+          encrypt.enabled: true
+          native:
+              searchLocations: file:E:/0_sts-workspace/msa-practices-config-repo/service-emaillist  #,이렇게 추가하면 됨
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: INFO
+     
