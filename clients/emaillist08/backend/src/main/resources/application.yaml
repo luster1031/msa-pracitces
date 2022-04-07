@@ -4,19 +4,12 @@
 spring:
    profiles:
       active: development
-
-
----
-#
-# common configuration
-#
-spring:
    mvc:
       static-path-pattern: /assets/**
       throw-exception-if-no-handler-found: true
    web:
       resources:
-         static-locations: classpath:/static/
+         static-locations: classpath:/assets/
    thymeleaf:
       prefix : classpath:templates/
       check-template-location: true
@@ -30,7 +23,7 @@ eureka:
       fetchRegistry: true
       registerWithEureka: false
       serviceUrl:
-         defaultZone: http://localhost:8761/eureka
+         defaultZone: http://localhost:8761/eureka # , http://localhost:8761/eureka (추가하려면 가능)
          
 
 ---
@@ -53,7 +46,11 @@ server:
          charset: UTF-8
          enabled: true
 
-
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: INFO
 ---
 #
 # production configuration
@@ -64,10 +61,28 @@ spring:
          on-profile: production    
 
 server:
-   port: 8881
+   port: 8882
    servlet:
       context-path: /
       encoding:
          charset: UTF-8
          enabled: true
 
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB  # 10MB넘어가면 zip으로 만듦
+         max-history: 30      # 계속할 수가 없어서, 30개까지 생김
+         
+   file:
+      name: logs/${spring.application.name}.log
+
+   level:
+      root: WARN        
+      me:
+         kickscar:
+            emaillist:
+               exception: ERROR
