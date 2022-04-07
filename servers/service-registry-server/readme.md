@@ -16,7 +16,7 @@
 
 ```yml
 server:
-   port: 7777
+   port: 8761
 ```
 
 
@@ -51,9 +51,12 @@ eureka:
 - eureka.client.serviceUrl.defaultZone<br>
   Zone의 의미는 한 개 서비스 레지스트에 등록된 서비스들의 모임이다.	
 
+#### 3. Annotation
 
-#### 3. Dashboard
+#### 4. Dashboard
 
-1.	접근<br>
-	http://{server}:8761
+1.	서비스 등록 상태를 확인 할 수 있다.
+2.	접근<br>
+	http://server:8761
+
 	
