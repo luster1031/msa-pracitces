@@ -17,14 +17,15 @@ spring:
       suffix : .html
       cache : false
 
+# GW 사용
 # Eureka
-eureka:
-   client:
-      fetchRegistry: true
-      registerWithEureka: false
-      serviceUrl:
-         defaultZone: http://localhost:8761/eureka # , http://localhost:8761/eureka (추가하려면 가능)
-         
+#eureka:
+#   client:
+#      fetchRegistry: true
+#      registerWithEureka: false
+#      serviceUrl:
+#         defaultZone: http://localhost:8761/eureka # , http://localhost:8761/eureka (추가하려면 가능)
+#         
 
 ---
 #

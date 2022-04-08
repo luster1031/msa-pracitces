@@ -24,10 +24,13 @@
 	<dependencies>
 	
 		<!-- Spring Cloud Discovery Client -->
+		<!--  GW사용
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		-->
+		
 		
 		<!-- Core Starter -->
 		<dependency>
