@@ -2,10 +2,10 @@ spring:
    application:
       name: service-config-server
    profiles:
-      active: git   #native / git이라고 주면, 
+      active: native 
 server:
    port: 7777
-encrypt:  # 암호화 복호화
+encrypt:
   key-store:
     alias: selfsigned
     location: classpath:keystore.jks
@@ -23,10 +23,10 @@ spring:
    cloud:
       config:
          server:
-            encrypt.enabled: true # 암호화를 쓴다는 걸 알려줌
+            encrypt.enabled: true
             git:
                uri: https://github.com/luster1031/msa-practices-config-repo
-               searchPaths: service-emaillist, service-gallery, service-guestbook, service-storage
+               searchPaths: service-emaillist, service-storage, service-gallery, service-guestbook
 logging:
    pattern:
       file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
@@ -54,7 +54,10 @@ spring:
        server:
           encrypt.enabled: true
           native:
-              searchLocations: file:E:/0_sts-workspace/msa-practices-config-repo/service-emaillist  #,이렇게 추가하면 됨
+              searchLocations: file:///Users/kickscar/DoWork/IdeaProjects/msa-practices-config-repo/service-emaillist,
+                               file:///Users/kickscar/DoWork/IdeaProjects/msa-practices-config-repo/service-storage,
+                               file:///Users/kickscar/DoWork/IdeaProjects/msa-practices-config-repo/service-gallery,
+                               file:///Users/kickscar/DoWork/IdeaProjects/msa-practices-config-repo/service-guestbook
 logging:
    pattern:
       console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
