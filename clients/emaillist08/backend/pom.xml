@@ -1,56 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.5</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 	<groupId>me.kickscar</groupId>
 	<artifactId>emaillist08</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>emaillist8</name>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>	
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
-
-	<dependencies>
 	
-		<!-- Spring Cloud Discovery Client -->
+	<dependencies>
 		
+		<!-- Spring Cloud Discovery Client -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		
-		
 		
 		<!-- Core Starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
+	
 		<!-- Spring Boot Devtools: Live Reload -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-
+		
 		<!-- Web Starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-
 
 		<!-- Thymeleaf Starter -->
 		<dependency>
@@ -71,9 +65,9 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		
 	</dependencies>
-
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -84,15 +78,11 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
+	</dependencyManagement>	
 
 	<build>
 		<finalName>emaillist08</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -107,9 +97,8 @@
 							<artifactId>spring-boot-devtools</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>				
+				</configuration>	
 			</plugin>
-			<!-- react 컴파일 해야함 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -128,8 +117,10 @@
 						<argument>run</argument>
 						<argument>build</argument>
 					</arguments>
+					<environmentVariables>
+					</environmentVariables>
 				</configuration>
-			</plugin>
+			</plugin>			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -150,7 +141,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>	
+			</plugin>			
 		</plugins>
 	</build>
 

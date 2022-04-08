@@ -1,7 +1,6 @@
-#
-# active spring boot profile
-#
 spring:
+   application:
+      name: emaillist
    profiles:
       active: development
    mvc:
@@ -16,16 +15,13 @@ spring:
       mode: HTML
       suffix : .html
       cache : false
-
-# GW 사용
-# Eureka
-#eureka:
-#   client:
-#      fetchRegistry: true
-#      registerWithEureka: false
-#      serviceUrl:
-#         defaultZone: http://localhost:8761/eureka # , http://localhost:8761/eureka (추가하려면 가능)
-#         
+eureka:
+   client:
+      fetchRegistry: true
+      registerWithEureka: false
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka
+         
 
 ---
 #
@@ -38,7 +34,6 @@ spring:
    devtools:
       livereload:
          enabled: true         
-
 server:
    port: 8080
    servlet:
@@ -46,12 +41,12 @@ server:
       encoding:
          charset: UTF-8
          enabled: true
-
 logging:
    pattern:
       console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
    level:
-      root: INFO
+      root: INFO  
+
 ---
 #
 # production configuration
@@ -59,8 +54,7 @@ logging:
 spring:
    config:
       activate:
-         on-profile: production    
-
+         on-profile: production
 server:
    port: 8882
    servlet:
@@ -68,22 +62,19 @@ server:
       encoding:
          charset: UTF-8
          enabled: true
-
 logging:
    pattern:
       file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
    logback:
       rollingpolicy:
          file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
-         max-file-size: 10MB  # 10MB넘어가면 zip으로 만듦
-         max-history: 30      # 계속할 수가 없어서, 30개까지 생김
-         
+         max-file-size: 10MB
+         max-history: 10
    file:
       name: logs/${spring.application.name}.log
-
    level:
-      root: WARN        
+      root: WARN
       me:
          kickscar:
             emaillist:
-               exception: ERROR
+               exception: ERROR 

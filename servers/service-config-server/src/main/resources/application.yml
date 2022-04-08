@@ -2,7 +2,7 @@ spring:
    application:
       name: service-config-server
    profiles:
-      active: native 
+      active: git 
 server:
    port: 7777
 encrypt:

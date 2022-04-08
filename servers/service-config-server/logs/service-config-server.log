@@ -1,1 +1,5 @@
 08:40:21.395 [http-nio-7777-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+15:26:49.559 [http-nio-7777-exec-2] WARN  o.s.c.c.s.e.CipherEnvironmentEncryptor - Cannot decrypt key: spring.datasource.password (class java.lang.IllegalStateException: Cannot decrypt)
+15:26:49.573 [http-nio-7777-exec-2] WARN  o.s.c.c.s.e.CipherEnvironmentEncryptor - Cannot decrypt key: spring.datasource.password (class java.lang.IllegalStateException: Cannot decrypt)
+15:53:16.536 [http-nio-7777-exec-4] WARN  o.s.c.c.s.e.CipherEnvironmentEncryptor - Cannot decrypt key: spring.datasource.password (class java.lang.IllegalStateException: Cannot decrypt)
+16:59:33.746 [Thread-3] WARN  o.s.c.c.s.e.MultipleJGitEnvironmentRepository - Failed to delete temporary directory on exit: java.nio.file.AccessDeniedException: C:\Users\BIT\AppData\Local\Temp\config-repo-10189525180898158347\.git\objects\pack\pack-3ec820e860e7b1057273c96e518f77f2eab3f236.idx
